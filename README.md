@@ -17,7 +17,7 @@ Load default keymaps:
 call lterm#load_keymaps()
 
 " load 'sensible' keymaps (<Esc> for terminal)
-call lterm#lterm#load_terminal_keymaps()
+call lterm#load_terminal_keymaps()
 ```
 
 Set the shell to PowerShell in windows along with some additional necessary options:
