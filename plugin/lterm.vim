@@ -86,18 +86,20 @@ let g:lterm_code_scripts = {
             \ 'c': { 'build': printf('gcc %s', filename), 'run': printf('cat input | ./a.out') },
             \ }
 
+"TODO:
+"add unknown value to dictionary and use that to evaluate
 function! LtermExecCodeScript(ft, type) abort
-	let ft_dict = get(g:lterm_code_scripts, a:ft, -1)
-
-	if ft_dict == -1
+	if !has_key(g:lterm_code_scripts, a:ft)
 		throw printf('filetype not found: %s', a:ft)
 	endif
 
-	let cmd = get(ft_dict, a:type, -1)
+	let ft_dict = get(g:lterm_code_scripts, a:ft)
 
-	if cmd == -1
-		throw printf('command type not found! %s', a:type)
+	if !has_key(ft_dict, a:type)
+		throw printf('command type not found: %s', a:type)
 	endif
+
+	let cmd = get(ft_dict, a:type)
 
 	call LtermExec(cmd)
 
