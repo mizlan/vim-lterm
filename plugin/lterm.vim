@@ -86,5 +86,22 @@ let g:lterm_code_scripts = {
             \ 'c': { 'build': printf('gcc %s', filename), 'run': printf('cat input | ./a.out') },
             \ }
 
-command! LtBuild call LtermExec(g:lterm_code_scripts[&filetype]['build'])
-command! LtRun call LtermExec(g:lterm_code_scripts[&filetype]['run'])
+function! LtermExecCodeScript(ft, type) abort
+	let ft_dict = get(g:lterm_code_scripts, ft, -1)
+
+	if ft_dict == -1
+		throw printf('filetype not found: %s', ft)
+	endif
+
+	let cmd = get(ft_dict, type, -1)
+
+	if cmd == -1
+		throw printf('command type not found! %s', type)
+	endif
+
+	call LtermExec(cmd)
+
+endfunction
+
+command! LtBuild call LtermExecCodeScript(&filetype, 'build')
+command! LtRun call LtermExecCodeScript(&filetype, 'run')
