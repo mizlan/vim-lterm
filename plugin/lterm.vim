@@ -87,16 +87,16 @@ let g:lterm_code_scripts = {
             \ }
 
 function! LtermExecCodeScript(ft, type) abort
-	let ft_dict = get(g:lterm_code_scripts, ft, -1)
+	let ft_dict = get(g:lterm_code_scripts, a:ft, -1)
 
 	if ft_dict == -1
-		throw printf('filetype not found: %s', ft)
+		throw printf('filetype not found: %s', a:ft)
 	endif
 
-	let cmd = get(ft_dict, type, -1)
+	let cmd = get(ft_dict, a:type, -1)
 
 	if cmd == -1
-		throw printf('command type not found! %s', type)
+		throw printf('command type not found! %s', a:type)
 	endif
 
 	call LtermExec(cmd)
