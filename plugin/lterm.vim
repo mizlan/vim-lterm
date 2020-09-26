@@ -2,9 +2,6 @@ let s:lterm_window = -1
 let s:lterm_buffer = -1
 let s:lterm_job_id = -1
 
-" either vertical or horizontal
-let g:lterm_direction_cmd = 'vnew'
-
 function! LtermDirection()
     if !exists(g:lterm_direction_cmd)
         return 'vnew'
@@ -74,8 +71,6 @@ function! LtermExec(cmd)
     wincmd p
 endfunction
 
-let s:cpp_compile = 'g++ -std=c++11 -DFEAST_LOCAL ' . expand('%')
-
 let filename = expand('%')
 let filename_noext = expand('%:r')
 
@@ -86,8 +81,6 @@ let g:lterm_code_scripts = {
             \ 'c': { 'build': printf('gcc %s', filename), 'run': printf('cat input | ./a.out') },
             \ }
 
-"TODO:
-"add unknown value to dictionary and use that to evaluate
 function! LtermExecCodeScript(ft, type) abort
     if !has_key(g:lterm_code_scripts, a:ft)
         throw printf('filetype not found: %s', a:ft)
