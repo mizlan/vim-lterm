@@ -89,19 +89,19 @@ let g:lterm_code_scripts = {
 "TODO:
 "add unknown value to dictionary and use that to evaluate
 function! LtermExecCodeScript(ft, type) abort
-	if !has_key(g:lterm_code_scripts, a:ft)
-		throw printf('filetype not found: %s', a:ft)
-	endif
+    if !has_key(g:lterm_code_scripts, a:ft)
+        throw printf('filetype not found: %s', a:ft)
+    endif
 
-	let ft_dict = get(g:lterm_code_scripts, a:ft)
+    let ft_dict = get(g:lterm_code_scripts, a:ft)
 
-	if !has_key(ft_dict, a:type)
-		throw printf('command type not found: %s', a:type)
-	endif
+    if !has_key(ft_dict, a:type)
+        throw printf('command type not found: %s', a:type)
+    endif
 
-	let cmd = get(ft_dict, a:type)
+    let cmd = get(ft_dict, a:type)
 
-	call LtermExec(cmd)
+    call LtermExec(cmd)
 
 endfunction
 
