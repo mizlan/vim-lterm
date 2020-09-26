@@ -74,12 +74,14 @@ function! LtermExec(cmd)
 	wincmd p
 endfunction
 
+let s:cpp_compile = 'g++ -std=c++11 -DFEAST_LOCAL ' . expand('%')
+
 augroup LtermCmds
 	autocmd!
 	" autocmd FileType python command! LtBuild exec ""
 	autocmd FileType python command! LtRun call LtermExec('cat input | python ' . expand('%'))
 	autocmd Filetype java command! LtBuild call LtermExec('javac ' . expand('%'))
 	autocmd Filetype java command! LtRun call LtermExec('cat input | java ' . expand('%:r'))
-	autocmd FileType cpp command! LtBuild call LtermExec('\g++ -std=c++11 -DFEAST_LOCAL ' . expand('%'))
+	autocmd FileType cpp command! LtBuild call LtermExec(s:cpp_compile)
 	autocmd FileType cpp command! LtRun call LtermExec('cat input | ./a.out')
 augroup END
