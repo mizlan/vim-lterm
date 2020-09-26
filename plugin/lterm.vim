@@ -94,5 +94,5 @@ let g:lterm_code_scripts = {
 " 	autocmd FileType cpp command! LtRun call LtermExec('cat input | ./a.out')
 " augroup END
 
-command! LtBuild call LtermExec(g:lterm_code_scripts[&filetype])
-command! LtRun call LtermExec(g:lterm_code_scripts[&filetype])
+command! LtBuild call LtermExec(g:lterm_code_scripts[&filetype]['build'])
+command! LtRun call LtermExec(g:lterm_code_scripts[&filetype]['run'])
