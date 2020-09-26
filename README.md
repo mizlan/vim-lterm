@@ -1,9 +1,11 @@
 # vim-lterm
 
-Toggle terminal window.
+A wrapper around the Neovim terminal window, with functionality for toggling and auto-compiling and running code.
 
-set preferred direction
+Set preferred direction:
 
 ```vim
-let g:lterm_direction_cmd = 'vnew' " or new
+" vnew or new, depending on preferred opening side
+
+let g:lterm_direction_cmd = 'vnew'
 ```
