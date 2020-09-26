@@ -9,3 +9,14 @@ Set preferred direction:
 
 let g:lterm_direction_cmd = 'vnew'
 ```
+
+Set the shell to PowerShell in windows along with some additional necessary options:
+
+```vim
+" init.vim
+
+set shell=powershell
+set shellcmdflag=-c
+set shellquote=\"
+set shellxquote=
+```
