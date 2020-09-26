@@ -16,11 +16,11 @@ Load default keymaps:
 " init.vim
 
 " load the keymaps for build/run
-call lterm#load_keymaps()
 " default keymaps:
 " <leader>lb to build
 " <leader>lr to run
 " <leader>lt to toggle window
+call lterm#load_keymaps()
 
 " load 'sensible' keymaps (<Esc> for terminal)
 call lterm#load_terminal_keymaps()
@@ -33,7 +33,7 @@ a `build` and `run` command.
 ```vim
 let g:lterm_code_scripts = {
     \ 'cpp': {
-    \     'build': printf('g++ -std=c++17 %s', filename),
+    \     'build': printf('g++ -std=c++17 %s', expand('.')),
     \     'run':   printf('cat input | ./a.out')
     \   },
     \ }
