@@ -83,16 +83,8 @@ let g:lterm_code_scripts = {
 			\ 'python': { 'build': '', 'run': printf('cat input | python %s', filename) },
 			\ 'cpp': { 'build': printf('g++ -std=c++11 -DFEAST_LOCAL %s', filename), 'run': printf('cat input | ./a.out') },
 			\ 'java': { 'build': printf('javac %s', filename), 'run': printf('cat input | java %s', filename_noext) },
+			\ 'c': { 'build': printf('gcc %s', filename), 'run': printf('cat input | ./a.out') },
 			\ }
-
-" augroup LtermCmds
-" 	autocmd!
-" 	autocmd FileType python command! LtRun call LtermExec('cat input | python ' . expand('%'))
-" 	autocmd Filetype java command! LtBuild call LtermExec('javac ' . expand('%'))
-" 	autocmd Filetype java command! LtRun call LtermExec('cat input | java ' . expand('%:r'))
-" 	autocmd FileType cpp command! LtBuild call LtermExec(s:cpp_compile)
-" 	autocmd FileType cpp command! LtRun call LtermExec('cat input | ./a.out')
-" augroup END
 
 command! LtBuild call LtermExec(g:lterm_code_scripts[&filetype]['build'])
 command! LtRun call LtermExec(g:lterm_code_scripts[&filetype]['run'])
