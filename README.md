@@ -10,6 +10,16 @@ Set preferred direction:
 let g:lterm_direction_cmd = 'vnew'
 ```
 
+Load default keymaps:
+
+```vim
+" load the keymaps for build/run
+call lterm#load_keymaps()
+
+" load 'sensible' keymaps (<Esc> for terminal)
+call lterm#lterm#load_terminal_keymaps()
+```
+
 Set the shell to PowerShell in windows along with some additional necessary options:
 
 ```vim
