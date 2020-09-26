@@ -13,11 +13,30 @@ let g:lterm_direction_cmd = 'vnew'
 Load default keymaps:
 
 ```vim
+" init.vim
+
 " load the keymaps for build/run
 call lterm#load_keymaps()
+" default keymaps:
+" <leader>lb to build
+" <leader>lr to run
+" <leader>lt to toggle window
 
 " load 'sensible' keymaps (<Esc> for terminal)
 call lterm#load_terminal_keymaps()
+```
+
+Edit language configurations:
+Add languages to the dictionary, determined by `filetype` and provide
+a `build` and `run` command.
+
+```vim
+let g:lterm_code_scripts = {
+    \ 'cpp': {
+    \     'build': printf('g++ -std=c++17 %s', filename),
+    \     'run':   printf('cat input | ./a.out')
+    \   },
+    \ }
 ```
 
 Set the shell to PowerShell in windows along with some additional necessary options:
