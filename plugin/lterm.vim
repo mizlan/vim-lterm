@@ -3,10 +3,11 @@ let s:lterm_buffer = -1
 let s:lterm_job_id = -1
 
 function! LtermDirection()
-    if !exists(g:lterm_direction_cmd)
+    if !exists('g:lterm_direction_cmd')
         return 'vnew'
     else
         return g:lterm_direction_cmd
+	endif
 endfunction
 
 function! LtermOpen()
