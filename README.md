@@ -1,5 +1,7 @@
 # vim-lterm
 
+Toggle terminal window.
+
 set preferred direction
 
 ```vim

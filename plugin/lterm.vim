@@ -80,6 +80,6 @@ augroup LtermCmds
 	autocmd FileType python command! LtRun call LtermExec('cat input | python ' . expand('%'))
 	autocmd Filetype java command! LtBuild call LtermExec('javac ' . expand('%'))
 	autocmd Filetype java command! LtRun call LtermExec('cat input | java ' . expand('%:r'))
-	autocmd FileType cpp command! LtBuild call LtermExec(' g++ -std=c++11 -DFEAST_LOCAL ' . expand('%'))
+	autocmd FileType cpp command! LtBuild call LtermExec('\g++ -std=c++11 -DFEAST_LOCAL ' . expand('%'))
 	autocmd FileType cpp command! LtRun call LtermExec('cat input | ./a.out')
 augroup END
