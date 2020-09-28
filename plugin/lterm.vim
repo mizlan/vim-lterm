@@ -7,7 +7,7 @@ function! LtermDirection()
         return 'vnew'
     else
         return g:lterm_direction_cmd
-	endif
+    endif
 endfunction
 
 function! LtermOpen()
@@ -72,14 +72,11 @@ function! LtermExec(cmd)
     wincmd p
 endfunction
 
-let filename = expand('%')
-let filename_noext = expand('%:r')
-
 let g:lterm_code_scripts = {
-            \ 'python': { 'build': '', 'run': printf('cat input | python %s', filename) },
-            \ 'cpp': { 'build': printf('g++ -std=c++11 -DFEAST_LOCAL %s', filename), 'run': printf('cat input | ./a.out') },
-            \ 'java': { 'build': printf('javac %s', filename), 'run': printf('cat input | java %s', filename_noext) },
-            \ 'c': { 'build': printf('gcc %s', filename), 'run': printf('cat input | ./a.out') },
+            \ 'python': { 'build': '', 'run': printf('cat input | python %s', expand('%')) },
+            \ 'cpp': { 'build': printf('g++ -std=c++11 %s', expand('%')), 'run': printf('cat input | ./a.out') },
+            \ 'java': { 'build': printf('javac %s', expand('%')), 'run': printf('cat input | java %s', expand('%:r')) },
+            \ 'c': { 'build': printf('gcc %s', expand('%')), 'run': printf('cat input | ./a.out') },
             \ }
 
 function! LtermExecCodeScript(ft, type) abort
