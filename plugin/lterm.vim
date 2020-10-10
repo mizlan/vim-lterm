@@ -10,13 +10,20 @@ function! LtermDirection()
     endif
 endfunction
 
-function! LtermOpen()
+function! LtermOpen(...)
+
+    let direction = 'new'
+    if len(a:000) == 1
+        let direction = a:0
+    else
+        let direction = LtermDirection()
+    endif
 
     " if not exist
     if !bufexists(s:lterm_buffer)
         " create the lterm buffer
 
-        exec LtermDirection()
+        exec direction
 
         " set the job id
         let s:lterm_job_id = termopen($SHELL)
@@ -31,11 +38,14 @@ function! LtermOpen()
         " don't show in buffer list
         set nobuflisted
 
+		" don't show line numbers
+		set nonumber norelativenumber
+
     " if not currently shown
     elseif !win_gotoid(s:lterm_window)
 
         " open the buffer in a split window
-        exec LtermDirection()
+        exec direction
         buffer lterm_b
 
         " set window id
@@ -72,12 +82,14 @@ function! LtermExec(cmd)
     wincmd p
 endfunction
 
-let g:lterm_code_scripts = {
-            \ 'python': { 'build': '', 'run': printf('cat input | python %s', expand('%')) },
-            \ 'cpp': { 'build': printf('g++ -std=c++11 %s', expand('%')), 'run': printf('cat input | ./a.out') },
-            \ 'java': { 'build': printf('javac %s', expand('%')), 'run': printf('cat input | java %s', expand('%:r')) },
-            \ 'c': { 'build': printf('gcc %s', expand('%')), 'run': printf('cat input | ./a.out') },
-            \ }
+if !exists('g:lterm_code_scripts')
+	let g:lterm_code_scripts = {
+				\ 'python': { 'build': '', 'run': printf('cat input | python %s', expand('%')) },
+				\ 'cpp': { 'build': printf('g++ -std=c++11 %s', expand('%')), 'run': printf('cat input | ./a.out') },
+				\ 'java': { 'build': printf('javac %s', expand('%')), 'run': printf('cat input | java %s', expand('%:r')) },
+				\ 'c': { 'build': printf('gcc %s', expand('%')), 'run': printf('cat input | ./a.out') },
+				\ }
+endif
 
 function! LtermExecCodeScript(ft, type) abort
     if !has_key(g:lterm_code_scripts, a:ft)
