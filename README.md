@@ -1,3 +1,5 @@
+<h1 align="center">ATTENTION! DEPRECATED! Use <a href='https://github.com/mizlan/termbufm'>termbufm</a></h1>
+
 # vim-lterm
 
 A wrapper around the Neovim terminal window, with functionality for toggling and auto-compiling and running code.
